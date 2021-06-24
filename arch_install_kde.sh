@@ -2,6 +2,8 @@
 
 # Personal Arch install script
 
+DISK="/dev/sda"
+
 echo "Syncing packages"
 pacman -Syy --noconfirm
 
@@ -20,8 +22,8 @@ loadkeys uk
 echo "Setting system clock"
 timedatectl set-ntp true
 
-# echo "Partitioning disk"
-# Need to work out how to do all partitioning through bash commands
+echo "Partitioning disk"
+fdisk $DISK
 
 # echo "Mounting file system"
 # mount /dev/sda1 /mnt
