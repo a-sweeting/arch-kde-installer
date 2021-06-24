@@ -20,17 +20,17 @@ loadkeys uk
 echo "Setting system clock"
 timedatectl set-ntp true
 
-echo "Partitioning disk"
+# echo "Partitioning disk"
 # Need to work out how to do all partitioning through bash commands
 
-echo "Mounting file system"
-mount /dev/sda1 /mnt
-
-echo "Install base system"
-pacstrap /mnt base linux-lts linux-firmware
-
-echo "Generating fstab"
-genfstab _U /mnt >> /mnt/etc/fstab
-
-echo "chroot into new system"
-arch-chroot /mnt
+# echo "Mounting file system"
+# mount /dev/sda1 /mnt
+# 
+# echo "Install base system"
+# pacstrap /mnt base linux-lts linux-firmware
+# 
+# echo "Generating fstab"
+# genfstab _U /mnt >> /mnt/etc/fstab
+# 
+# echo "chroot into new system"
+# arch-chroot /mnt
