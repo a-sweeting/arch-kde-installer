@@ -3,6 +3,8 @@
 # Personal Arch install script
 
 DISK="/dev/sda"
+TIMEZONE="Europe/London"
+LANGUAGE="en_GB.UTF-8"
 
 echo "Syncing packages"
 pacman -Syy --noconfirm
@@ -40,3 +42,20 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 echo "chroot into new system"
 arch-chroot /mnt
+
+echo "Installing vim"
+pacman -S vim
+
+echo "Setting timezone to Europe/London"
+ln -sf "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
+
+echo "Setting hardware clock"
+hwclock --systohc
+
+echo "Set locale info"
+vim /etc/locale.gen
+locale-gen
+
+echo "Setting Language"
+echo "LANG=${LANGUAGE}" > /etc/locale.conf
+
