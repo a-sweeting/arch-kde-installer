@@ -5,6 +5,9 @@
 DISK="/dev/sda"
 TIMEZONE="Europe/London"
 LANGUAGE="en_GB.UTF-8"
+KEYBOARD="uk"
+
+HOSTNAME="anthony-laptop"
 
 echo "Syncing packages"
 pacman -Syy --noconfirm
@@ -19,7 +22,7 @@ echo "Refreshing mirror list"
 reflector --verbose --latest 20 --protocol https --download-timeout 2 --sort rate --save /etc/pacman.d/mirrorlist
 
 echo "Setting keyboard layout to UK"
-loadkeys uk
+loadkeys $KEYBOARD
 
 echo "Setting system clock"
 timedatectl set-ntp true
@@ -56,6 +59,13 @@ echo "Set locale info"
 vim /etc/locale.gen
 locale-gen
 
-echo "Setting Language"
+echo "Setting Language and keyboard"
 echo "LANG=${LANGUAGE}" > /etc/locale.conf
+echo "KEYMAP=$KEYBOARD" > /etc/vconsole.conf
 
+echo "Setting hostname"
+
+echo "$HOSTNAME" > /etc/hostname
+echo "127.0.0.1		localhost" > /etc/hosts
+echo "::1		localhost" >> /etc/hosts
+echo "127.0.1.1		${HOSTNAME}.localdomain	${HOSTNAME}" >> /etc/hosts
