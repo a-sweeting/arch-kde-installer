@@ -25,14 +25,18 @@ timedatectl set-ntp true
 echo "Partitioning disk"
 fdisk $DISK
 
-# echo "Mounting file system"
-# mount /dev/sda1 /mnt
-# 
-# echo "Install base system"
-# pacstrap /mnt base linux-lts linux-firmware
-# 
-# echo "Generating fstab"
-# genfstab _U /mnt >> /mnt/etc/fstab
-# 
-# echo "chroot into new system"
-# arch-chroot /mnt
+echo "Formatting disk"
+mkfs.fat -F32 "${DISK}1"
+mkfs.ext4 "${DISK}2"
+
+echo "Mounting root partition"
+mount "${DISK}2" /mnt
+
+echo "Install base system"
+pacstrap /mnt base linux-lts linux-firmware
+ 
+echo "Generating fstab"
+genfstab -U /mnt >> /mnt/etc/fstab
+
+echo "chroot into new system"
+arch-chroot /mnt
