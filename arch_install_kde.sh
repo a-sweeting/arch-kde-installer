@@ -3,16 +3,16 @@
 # Personal Arch install script
 
 echo "Syncing packages"
-pacman -Syy
+pacman -Syy --noconfirm
 
 echo "Installing Reflector"
-pacman -S reflector
+pacman -S --noconfirm reflector
 
 echo "Installing vim"
-pacman -S vim
+pacman -S --noconfirm vim
 
 echo "Refreshing mirror list"
-reflector --verbose --latest 200 --protocol https --download-timeout 2 --sort rate --save /etc/pacman.d/mirrorlist
+reflector --verbose --latest 20 --protocol https --download-timeout 2 --sort rate --save /etc/pacman.d/mirrorlist
 
 echo "Setting keyboard layout to UK"
 loadkeys uk
