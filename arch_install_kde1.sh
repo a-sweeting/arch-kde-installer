@@ -38,7 +38,7 @@ echo "Mounting root partition"
 mount "${DISK}2" /mnt
 
 echo "Install base system"
-pacstrap /mnt base linux-lts linux-firmware
+pacstrap /mnt base base-devel linux-lts linux-firmware
  
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
