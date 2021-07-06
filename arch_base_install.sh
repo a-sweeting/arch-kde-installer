@@ -7,7 +7,12 @@ TIMEZONE="Europe/London"
 LANGUAGE="en_GB.UTF-8"
 KEYBOARD="uk"
 
-HOSTNAME="anthony-laptop"
+HOSTNAME="test"
+
+ROOT_PASSWD="1234"
+
+NEW_USER="test"
+NEW_USER_PASSWD="1234"
 
 echo "Syncing packages"
 pacman -Syy --noconfirm
@@ -72,6 +77,8 @@ echo "127.0.1.1		${HOSTNAME}.localdomain	${HOSTNAME}" >> /etc/hosts
 echo "Adding user"
 
 echo -e $ROOT_PASSWD"\n"$ROOT_PASSWD | passwd
+
+useradd -m $NEW_USER
 echo -e $NEW_USER_PASSWD"\n"$NEW_USER_PASSWD | passwd $NEW_USER
 
 echo "Adding user to groups"
