@@ -49,7 +49,7 @@ echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
 
 echo "chroot into new system"
-arch-chroot /mnt << EOF
+arch-chroot /mnt <<EOF
 
 echo "Setting timezone to Europe/London"
 ln -sf "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
